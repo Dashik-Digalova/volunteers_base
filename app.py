@@ -1,5 +1,7 @@
-from flask import Flask, jsonify, request, abort
 import json
+
+from flask import Flask, jsonify, request, abort
+
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -15,9 +17,7 @@ def read_file(filename):
 
 @app.route("/api/v1.0/districts/", methods=["GET"])
 def get_district():
-    f = open('districts.json', 'r')
-    data = json.load(f)
-    f.close()
+    data = read_file("districts.json")
     districts_list = []
 
     for k, v in data.items():
